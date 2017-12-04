@@ -1,3 +1,5 @@
-from django.shortcuts import render
 
-# Create your views here.
+
+# definimos una funcion
+def hello_world(request):
+    return "Hello World!"
