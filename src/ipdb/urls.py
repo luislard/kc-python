@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', hello_world)
     path('', home),
-    path('movies/<int:pk>', movie_detail)
+    path('movies/<int:pk>', movie_detail, name="movie_detail_page")
 ]
 
