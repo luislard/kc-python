@@ -5,6 +5,10 @@
     <title>{% block head_title %} IPDB - Internet Pelis Database {% endblock %}</title>
 </head>
 <body>
+    <div class="menu">
+        <a href="{% url "home_page" %}">Home</a>
+    </div>
+    <hr>
     {% block content %}
 
     {% endblock %}

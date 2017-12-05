@@ -21,7 +21,7 @@ from movies.views import hello_world, home, movie_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', hello_world)
-    path('', home),
+    path('', home, name="home_page"),
     path('movies/<int:pk>', movie_detail, name="movie_detail_page")
 ]
 
