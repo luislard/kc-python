@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
 
 from movies.models import Movie
 
@@ -15,7 +15,5 @@ def hello_world(request):
 def home(request):
     movies = Movie.objects.all()
     html = "<ul>"
-    for movie in movies:
-        html += "<li>" + movie.title + "</li>"
-    html += "</ul>"
-    return HttpResponse(html)
+    context = { 'movies': movies }
+    return render(request, "home.html", context)
