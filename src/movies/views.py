@@ -19,7 +19,7 @@ def home(request):
 
 
 def movie_detail(request, pk):
-    possible_movies = Movie.objects.filter(pk=pk)
+    possible_movies = Movie.objects.filter(pk=pk).select_related("category")
     if len(possible_movies) == 0:
         # pelicula no existe
         return render(request,"404.html", status=404)
