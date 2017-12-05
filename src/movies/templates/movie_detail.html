@@ -10,7 +10,7 @@
     <p>{{ movie.summary }}</p>
     <ul>
         <li><strong>Director:</strong> {{ movie.director_name }}</li>
-        <li><strong>Release Date:</strong> {{ movie.release_date }}</li>
+        <li><strong>Release Date:</strong> {{ movie.release_date|date:"d/m/Y" }}</li>
         <li><strong>Category:</strong> {{ movie.category.name }}</li>
         <li><strong>Rating:</strong> {{ movie.rating }}</li>
 
