@@ -13,7 +13,7 @@ def hello_world(request):
 
 
 def home(request):
-    movies = Movie.objects.all().order_by('-release_date')
+    latest_movies = Movie.objects.all().order_by('-release_date')
     html = "<ul>"
-    context = { 'movies': movies }
+    context = { 'movies': latest_movies[:3] }
     return render(request, "home.html", context)
