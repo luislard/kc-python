@@ -23,6 +23,12 @@ class Movie(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) # set date when object is created
     modified_at = models.DateTimeField(auto_now=True)  # saves the date when the object is updated
 
+    # relacionando con las categorias
+    # comportamientos
+    # CASCADE -> Cascade deletes. Django emulates the behavior of the SQL constraint ON DELETE CASCADE and also deletes the object containing the ForeignKey.
+    # PROTECT -> Prevent deletion of the referenced object by raising ProtectedError, a subclass of django.db.IntegrityError.
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+
     def __str__(self):
         """
         Devuelve la representación de un objeto como una string
