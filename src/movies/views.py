@@ -16,7 +16,7 @@ def hello_world(request):
 
 def home(request):
     latest_movies = Movie.objects.all().order_by('-release_date')
-    context = { 'movies': latest_movies[:3] }
+    context = { 'movies': latest_movies[:10] }
     return render(request, "home.html", context)
 
 
@@ -36,4 +36,10 @@ class CreateMovieView(View):
 
     def get(self, request):
         form = MovieForm()
+        return render(request,'movie_form.html', {'form': form})
+
+    def post(self, request):
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            movie = form.save()
         return render(request,'movie_form.html', {'form': form})
