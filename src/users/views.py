@@ -22,7 +22,8 @@ class LoginView(View):
                 django_login(request, authenticated_user)
                 return redirect('home_page')
             else:
-                messages.error(request, 'Usuario incorrecto o inactivo')
+                form.add_error(None, "Usuario incorrecto o inactivo") #pinta un error que no pertenece a un field del form
+                #messages.error(request, 'Usuario incorrecto o inactivo')
         return render(request, 'login_form.html', {'form': form})
 
 
