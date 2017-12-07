@@ -9,6 +9,13 @@
 <body>
     <div class="menu">
         <a href="{% url "home_page" %}">Home</a>
+
+        {% if user.is_authenticated %}Welcome <strong>{{ user.username }}</strong>
+            <a href="{% url "logout_page" %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login_page' %}">Login</a>
+        {% endif %}
+
     </div>
     <hr>
     {% block content %}
