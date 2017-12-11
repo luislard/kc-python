@@ -4,6 +4,11 @@ from django.contrib import admin
 
 from movies.models import Category, Movie
 
+
 admin.site.register(Category)
 
-admin.site.register(Movie)
+# Con esto se personaliza el admin de django
+@admin.register(Movie)
+class MovieAdmin(admin.ModelAdmin):
+
+    list_display = ('title', 'release_date', 'rating', 'user', 'category')
