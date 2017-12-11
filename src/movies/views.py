@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
@@ -16,12 +18,14 @@ def hello_world(request):
         return HttpResponse("Hello " + name)
 
 
+@login_required
 def home(request):
     latest_movies = Movie.objects.all().order_by('-release_date')
     context = { 'movies': latest_movies[:10] }
     return render(request, "home.html", context)
 
 
+@login_required
 def movie_detail(request, pk):
     possible_movies = Movie.objects.filter(pk=pk).select_related("category")
     if len(possible_movies) == 0:
@@ -34,12 +38,12 @@ def movie_detail(request, pk):
         return render(request, "movie_detail.html", context)
 
 
-class CreateMovieView(View):
+class CreateMovieView(LoginRequiredMixin, View):
+
 
     def get(self, request):
         form = MovieForm()
         return render(request,'movie_form.html', {'form': form})
-
     def post(self, request):
         form = MovieForm(request.POST)
         if form.is_valid():

@@ -110,3 +110,5 @@ venv.bak/
 
 # sqlite
 db.sqlite3
+
+**/*.DS_Store

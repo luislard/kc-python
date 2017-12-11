@@ -10,7 +10,8 @@
     <div class="menu">
         <a href="{% url "home_page" %}">Home</a>
 
-        {% if user.is_authenticated %}Welcome <strong>{{ user.username }}</strong>
+        {% if user.is_authenticated %}
+            <a href="{% url "create_movie_page" %}">New Movie</a> |
             <a href="{% url "logout_page" %}">Logout</a>
         {% else %}
             <a href="{% url 'login_page' %}">Login</a>
