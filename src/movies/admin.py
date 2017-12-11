@@ -19,3 +19,5 @@ class MovieAdmin(admin.ModelAdmin):
         return "{0} {1}".format(obj.user.first_name, obj.user.last_name)
     user_full_name.short_description = "Movie Owner" # en python todo son objetos
     user_full_name.admin_order_field = "user__first_name" # le decimos que ordene por el first name
+
+    fieldsets = ((None, {'fields': ('title', 'summary')}),) # muestra solo el titulo y el sumario
