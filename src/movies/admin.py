@@ -12,3 +12,6 @@ admin.site.register(Category)
 class MovieAdmin(admin.ModelAdmin):
 
     list_display = ('title', 'release_date', 'rating', 'user', 'category')
+    list_filter = ('user', 'category', 'release_date')
+    search_fields = ('title', 'director_name', 'summary')
+
