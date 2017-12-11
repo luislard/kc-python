@@ -124,6 +124,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
+# Muestra las queries SQL en la consola
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -140,3 +141,6 @@ LOGGING = {
         },
     }
 }
+
+# Login URL
+LOGIN_URL = "/login"
