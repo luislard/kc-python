@@ -20,7 +20,8 @@ class LoginView(View):
             authenticated_user = authenticate(username=username, password=password)
             if authenticated_user and authenticated_user.is_active:
                 django_login(request, authenticated_user)
-                return redirect('home_page')
+                redirect_to = request.GET.get("next", "home_page")
+                return redirect(redirect_to)
             else:
                 form.add_error(None, "Usuario incorrecto o inactivo") #pinta un error que no pertenece a un field del form
                 #messages.error(request, 'Usuario incorrecto o inactivo')
