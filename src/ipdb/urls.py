@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from movies.views import hello_world, home, movie_detail, CreateMovieView
+from movies.views import hello_world, home, movie_detail, CreateMovieView, MyMoviesView
 from users.views import logout, LoginView
 
 urlpatterns = [
@@ -27,9 +27,8 @@ urlpatterns = [
 
     path('pelis/crear', CreateMovieView.as_view(), name="create_movie_page"),
     path('pelis/<int:pk>', movie_detail, name="movie_detail_page"),
+    path('pelis/', MyMoviesView.as_view(), name='my_movies_page'),
     path('', home, name="home_page"),
-
-
 
 ]
 

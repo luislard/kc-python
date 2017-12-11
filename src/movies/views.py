@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
+from django.views.generic import ListView
 
 from movies.forms import MovieForm
 from movies.models import Movie
@@ -56,3 +57,12 @@ class CreateMovieView(LoginRequiredMixin, View):
             message += '<a href="{0}">View</a>'.format(url)
             messages.success(request,message)
         return render(request,'movie_form.html', {'form': form})
+
+
+class MyMoviesView(ListView):
+    model = Movie
+    template_name = "my_movies.html"
+
+    def get_queryset(self):
+        queryset = super(MyMoviesView, self).get_queryset()
+        return queryset.filter(user=self.request.user)
