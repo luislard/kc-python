@@ -59,7 +59,7 @@ class CreateMovieView(LoginRequiredMixin, View):
         return render(request,'movie_form.html', {'form': form})
 
 
-class MyMoviesView(ListView):
+class MyMoviesView(LoginRequiredMixin,ListView):
     model = Movie
     template_name = "my_movies.html"
 
