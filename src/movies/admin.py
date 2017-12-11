@@ -17,3 +17,4 @@ class MovieAdmin(admin.ModelAdmin):
 
     def user_full_name(self, obj):
         return "{0} {1}".format(obj.user.first_name, obj.user.last_name)
+    user_full_name.short_description = "Movie Owner" # en python todo son objetos
