@@ -32,7 +32,7 @@ urlpatterns = [
     path('', home, name="home_page"),
 
     # API REST
-    path('api/1.0/hello', HelloWorld.as_view(), name="api_hello_world"),
+    path('api/1.0/hello/', HelloWorld.as_view(), name="api_hello_world"),
 
 
 
