@@ -8,4 +8,7 @@ class HelloWorld(APIView):
         return Response([ 'hello','world' ])
 
     def post(self, request):
-        return Response(request.POST)
+        return Response(request.data)
+
+    def put(self, request):
+        return Response(request.data)
