@@ -3,8 +3,13 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 
-class UserSerializer(serializers.Serializer):
+class UserListSerializer(serializers.Serializer):
 
+    id = serializers.ReadOnlyField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+
+class UserSerializer(UserListSerializer):
     id = serializers.ReadOnlyField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
