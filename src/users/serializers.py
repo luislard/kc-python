@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 
 class UserSerializer(serializers.Serializer):
@@ -10,6 +11,11 @@ class UserSerializer(serializers.Serializer):
     username = serializers.CharField()
     email = serializers.EmailField()
     password = serializers.CharField()
+
+    def validate_username(self, data):
+        if User.objects.filter(username=data).exists():
+            raise ValidationError('Usuario already exists')
+        return data
 
     def create(self, validated_data):
         instance = User()
