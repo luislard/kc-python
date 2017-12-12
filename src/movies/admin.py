@@ -5,6 +5,8 @@ from django.utils.safestring import mark_safe
 
 from movies.models import Category, Movie
 
+admin.site.site_header = "IPDB Back Office"
+admin.site.site_title = admin.site.site_header
 
 admin.site.register(Category)
 
