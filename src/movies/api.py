@@ -13,8 +13,15 @@ class MoviesListAPI(ListCreateAPIView):
     def get_serializer_class(self):
         return MoviesListSerializer if self.request.method == "GET" else MovieSerializer
 
+    # documentacion en http://www.django-rest-framework.org/api-guide/generic-views/
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 class MovieDetailAPI(RetrieveUpdateDestroyAPIView):
 
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
 
+    # documentacion en http://www.django-rest-framework.org/api-guide/generic-views/
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
