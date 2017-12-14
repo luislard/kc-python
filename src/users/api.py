@@ -5,6 +5,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from users.permissions import UsersPermission
 from users.serializers import UserSerializer, UserListSerializer
 
 
@@ -21,6 +22,8 @@ class HelloWorld(APIView):
 
 
 class UserListAPI(APIView):
+
+    permission_classes = [UsersPermission]
 
     def get(self, request):
         users = User.objects.all()
@@ -42,13 +45,17 @@ class UserListAPI(APIView):
 
 class UserDetailAPI(APIView):
 
+    permission_classes = [UsersPermission]
+
     def get(self, request, pk):
         user = get_object_or_404(User, pk=pk)
+        self.check_object_permissions(request, user)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
     def put(self, request, pk):
         user = get_object_or_404(User, pk=pk)
+        self.check_object_permissions(request, user)
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -58,5 +65,6 @@ class UserDetailAPI(APIView):
 
     def delete(self, request, pk):
         user = get_object_or_404(User, pk=pk)
+        self.check_object_permissions(request, user)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
