@@ -2,6 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from movies.models import Movie
+from movies.permissions import MoviesPermission
 from movies.serializers import MovieSerializer, MoviesListSerializer
 
 
@@ -21,6 +22,7 @@ class MovieDetailAPI(RetrieveUpdateDestroyAPIView):
 
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+    permission_classes = [MoviesPermission]
 
     # documentacion en http://www.django-rest-framework.org/api-guide/generic-views/
     def perform_update(self, serializer):
