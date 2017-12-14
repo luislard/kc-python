@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from movies.api import MoviesListAPI
+from movies.api import MoviesListAPI, MovieDetailAPI
 from movies.views import hello_world, home, movie_detail, CreateMovieView, MyMoviesView
 from users.api import HelloWorld, UserListAPI, UserDetailAPI
 from users.views import logout, LoginView
@@ -37,7 +37,8 @@ urlpatterns = [
     path('api/1.0/users/', UserListAPI.as_view(), name="api_users_list"),
     path('api/1.0/users/<int:pk>', UserDetailAPI.as_view(), name="api_users_detail"),
 
-    path('api/1.0/movies/', MoviesListAPI.as_view(), name='api_movies_list')
+    path('api/1.0/movies/<int:pk>', MovieDetailAPI.as_view(), name='api_movie_detail'),
+    path('api/1.0/movies/', MoviesListAPI.as_view(), name='api_movies_list'),
 
 ]
 
